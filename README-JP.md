@@ -191,7 +191,7 @@ License
 Git Repository
 --------------
 
-  LightSpeedWorks/[co-chan](https://github.com/LightSpeedWorks/co-chan#readme)
+  LightSpeedWorks/[new-generator](https://github.com/LightSpeedWorks/new-generator#readme)
 
 [npm-new-generator]: https://nodei.co/npm/new-generator
 [npm-new-generator.png]: https://nodei.co/npm/new-generator.png
