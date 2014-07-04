@@ -1,13 +1,13 @@
 {
   "name": "new-generator",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "new-generator",
   "main": "lib/new-generator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Generator"
+    "Generator", "Iteration", "Harmony", "ES6"
   ],
   "author": "LightSpeedC",
   "license": "MIT"
