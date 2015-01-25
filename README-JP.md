@@ -120,7 +120,7 @@ var g10 = new Generator(5, 1, -2, true);  // -> 5, 3, 1
 var g11 = Generator(3);
 ```
 
-# filer or map type of methods
+# filter or map type of methods
 
 ## Generator#filter(fn(value), this)
 
