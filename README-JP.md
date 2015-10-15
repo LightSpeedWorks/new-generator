@@ -25,6 +25,9 @@
 Installation
 ------------
 
+[![NPM](https://nodei.co/npm/new-generator.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/new-generator/)
+[![NPM](https://nodei.co/npm-dl/new-generator.png?height=2)](https://nodei.co/npm/new-generator/)
+
 ```bash
 $ npm install new-generator
 ```
