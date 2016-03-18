@@ -1,5 +1,3 @@
-まだ翻訳できていません。
-
 [English version](README.md#readme)
 
 [new-generator](https://www.npmjs.org/package/new-generator) - new Generator class for ES2015 (ES6 Harmony) generators and iteration
