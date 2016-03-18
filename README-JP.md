@@ -2,27 +2,25 @@
 
 [English version](README.md#readme)
 
-[new-generator](https://www.npmjs.org/package/new-generator) - new Generator class for ES6 Harmony generators and iteration
+[new-generator](https://www.npmjs.org/package/new-generator) - new Generator class for ES2015 (ES6 Harmony) generators and iteration
 =========================
 
-  This **new Generator** is general purpose iterable generator.
+  この **new Generator** は汎用の繰り返し可能なジェネレータです。
 
-  An generator is an object with a `next()` method
-  that conforms to the iterable generator protocol.
+  ジェネレータは `next()` メソッドを持つ繰り返し可能なジェネレータプロトコル準拠のオブジェクトです。
 
-  The iterable generator protocol is for the `next` method to
-  return the object with next value in `value` property
-  in an iteration each time that is called.
-  At the end of iteration, return the object with `true` in `done` property.
+  繰り返し可能なジェネレータプロトコルは `value` プロパティに値を持つオブジェクトを
+  `next` メソッドを呼び出すたびに返します。
+  繰り返しの終わりには `done` プロパティに `true` を持つオブジェクトを返します。  
 
-  This `Generator` has `filter`, `map` or `reduce` methods like `Array`.
+  この `Generator` は `Array` の様に `filter`, `map` や `reduce` メソッドがあります。
 
-  **new-generator** does not directly use any ES6 Harmony features, 
-  but it is designed to work well with `ES6 generators and iteration`,
-  a control flow library based on ES6 generators.
+  **new-generator** は ES2015 (ES6 Harmony) の機能は直接使用していませんが、
+  `ES2015 (ES6) ジェネレータやイテレータ` と組み合わせると便利な様に設計された
+  制御フローライブラリです。
 
 
-Installation
+インストレーション
 ------------
 
 [![NPM](https://nodei.co/npm/new-generator.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/new-generator/)
@@ -34,31 +32,28 @@ $ npm install new-generator
 
 [![npm][npm-new-generator.png]][npm-new-generator]
 
-Usage
+使い方
 -----
 
-  The following example requires `node 0.11.x` (unstable)
-  and must be run with the `--harmony-generators` and `--harmony-iteration`
-  or `--harmony` flag.
-  Future stable versions of node.js will include support for generators and iteration.
+  The following example requires `node v4/v5`
 
-# example using new Generator
+# new Generator を使った例
 
 ```js
 var Generator = require('new-generator');
 
-// new Generator with ES6 iteration feature (node v0.11.x)
+// new Generator : ES2015 (ES6) iteration 機能を使った例
 for (var value of new Generator([11, 22, 33])
   console.log(value);
 // -> 11, 22, 33
 
-// new Generator without ES6 feature (node v0.8.x)
+// new Generator : ES2015 (ES6) の機能を使わない例
 for (var gtor = new Generator([11, 22, 33]),
          n = gtor.next(); !n.done; n = gtor.next())
   console.log(n.value);
 // -> 11, 22, 33
 
-// conbination
+// 組合せ
 console.log(
   new Generator(1, 20, true)                    // -> 1, 2, 3, ... 19, 20
   .filter(function (x) { return x % 2 === 0; }) // -> 2, 4, 6, ... 18, 20
@@ -66,7 +61,7 @@ console.log(
   .reduce(function (x, y) { return x + y; }));  // => 1 + 2 + ... + 10 = 55
 ```
 
-# Generator Class
+# Generator クラス
 
 ## new Generator(generator)
 
@@ -87,10 +82,10 @@ var g3 = new Generator([1, 2, 3]);  // -> 1, 2, 3
   var g4 = new Generator(arguments);  // -> 10, 20, 30
 })(10, 20, 30);
 
-// other Generator
+// 他の Generator
 var g5 = new Generator(g1);
 
-// ES6 Generator
+// ES2015 (ES6) ジェネレータ
 function gtorEx() {
   for (var i = 0; i < 3; ++i)
     yield i;
@@ -119,11 +114,11 @@ var g8 = new Generator(1, 5, 2, true);    // -> 1, 3, 5
 var g9 = new Generator(3, 1, true);       // -> 3, 2, 1
 var g10 = new Generator(5, 1, -2, true);  // -> 5, 3, 1
 
-// you can omit `new`
+// `new` を省略する事も出来る。
 var g11 = Generator(3);
 ```
 
-# filter or map type of methods
+# filter または map タイプのメソッド
 
 ## Generator#filter(fn(value), this)
 
@@ -148,7 +143,7 @@ console.log(new Generator(5).map(function (x) {
 // -> [0, 3, 6, 9, 12]
 ```
 
-# reduce type of methods
+# reduce タイプのメソッド
 
 ## Generator#reduce(fn(cumulative, value), initial, this)
 
@@ -170,7 +165,7 @@ console.log(new Generator(5).toArray());
 // -> [0, 1, 2, 3, 4]
 ```
 
-# Generator class methods
+# Generator クラスメソッド
 
 ## Generator.range([from,] to, [step=1,] [boundary=false])
 

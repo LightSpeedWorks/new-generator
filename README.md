@@ -1,4 +1,4 @@
-[new-generator](https://www.npmjs.org/package/new-generator) - new Generator class for ES6 Harmony generators and iteration
+[new-generator](https://www.npmjs.org/package/new-generator) - new Generator class for ES2015 (ES6 Harmony) generators and iteration
 =========================
 
   This **new Generator** is general purpose iterable generator.
@@ -13,9 +13,9 @@
 
   This `Generator` has `filter`, `map` or `reduce` methods like `Array`.
 
-  **new-generator** does not directly use any ES6 Harmony features, 
-  but it is designed to work well with `ES6 generators and iteration`,
-  a control flow library based on ES6 generators.
+  **new-generator** does not directly use any ES2015 (ES6 Harmony) features, 
+  but it is designed to work well with `ES2015 (ES6) generators and iteration`,
+  a control flow library based on ES2015 (ES6) generators.
 
   [Japanese version/■日本語版はこちら■](README-JP.md#readme)
 
@@ -34,22 +34,19 @@ $ npm install new-generator
 Usage
 -----
 
-  The following example requires `node 0.11.x` (unstable)
-  and must be run with the `--harmony-generators` and `--harmony-iteration`
-  or `--harmony` flag.
-  Future stable versions of node.js will include support for generators and iteration.
+  The following example requires `node v4/v5`.
 
 # example using new Generator
 
 ```js
 var Generator = require('new-generator');
 
-// new Generator with ES6 iteration feature (node v0.11.x)
+// new Generator with ES2015 (ES6) iteration feature (node v0.11.x)
 for (var value of new Generator([11, 22, 33])
   console.log(value);
 // -> 11, 22, 33
 
-// new Generator without ES6 feature (node v0.8.x)
+// new Generator without ES2015 (ES6) feature (node v0.8.x)
 for (var gtor = new Generator([11, 22, 33]),
          n = gtor.next(); !n.done; n = gtor.next())
   console.log(n.value);
@@ -87,7 +84,7 @@ var g3 = new Generator([1, 2, 3]);  // -> 1, 2, 3
 // other Generator
 var g5 = new Generator(g1);
 
-// ES6 Generator
+// ES2015 (ES6) Generator
 function gtorEx() {
   for (var i = 0; i < 3; ++i)
     yield i;
