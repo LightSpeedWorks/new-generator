@@ -3,7 +3,7 @@
 'use strict';
 
 try {
-  var Generator = require('../lib/new-generator');
+  var Generator = require('../new-generator');
 } catch (e) {
   var Generator = require('new-generator');
 }

@@ -2,7 +2,7 @@
   "name": "new-generator",
   "version": "0.0.4",
   "description": "This new Generator is general purpose iterable generator.",
-  "main": "lib/new-generator.js",
+  "main": "new-generator.js",
   "keywords": [
     "Generator", "Iteration", "Harmony", "ES6"
   ],
