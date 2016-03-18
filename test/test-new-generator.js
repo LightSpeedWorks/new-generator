@@ -147,6 +147,12 @@ assertThat(new Generator(5, 1, -1, true).toArray(), [5, 4, 3, 2, 1],
           'new Generator(5, 1, -1, true).toArray()');
 console.log();
 
+assertThat(new Generator([0, 1, 2, 3, 4]).toArray(), [0, 1, 2, 3, 4],
+          'new Generator([0, 1, 2, 3, 4]).toArray()');
+assertThat(new Generator('abcde').toArray(), ['a', 'b', 'c', 'd', 'e'],
+          'new Generator("abcde").toArray()');
+console.log();
+
 // 範囲
 function *rangeEx(from, to) {
   for (var i = from; i < to; ++i)
@@ -178,6 +184,19 @@ function *filterEx(gtor, fn, ctx) {
     if (fn.call(ctx, value))
       yield value;
 }
+
+var actual = [];
+for (var value of filterEx([0,1,2,3,4], function (x) { return x > 2; }))
+  actual.push(value);
+assertThat(actual, [3, 4],
+  'for of filterEx([0,1,2,3,4],over2) -> push()');
+
+var actual = [];
+for (var gtor = filterEx(new Generator([0,1,2,3,4]), function (x) { return x > 2; }),
+         n = gtor.next(); !n.done; n = gtor.next())
+  actual.push(n.value);
+assertThat(actual, [3, 4],
+  'filterEx(new Generator([0,1,2,3,4]),over2).next().value -> push()');
 
 var actual = [];
 for (var gtor = filterEx(new Generator(0, 5), function (x) { return x > 2; }),

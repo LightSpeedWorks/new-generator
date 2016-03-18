@@ -4,6 +4,8 @@
 'use strict';
 
 var util = require('util');
+var iterator = (typeof Symbol === 'function' &&
+  typeof Symbol.iterator === 'symbol') ? Symbol.iterator : undefined;
 
 /**
  * Generator. ジェネレータ
@@ -18,10 +20,17 @@ function Generator(generator, to, step, boundary) {
   if (!(this instanceof Generator))
     return new Generator(generator, to, step, boundary);
 
+  var self = this;
+
   // Generator Function
   if (typeof generator === 'function' &&
       generator.constructor.name === 'GeneratorFunction') {
     this.generator = generator();
+    return;
+  }
+
+  if (iterator && generator && generator[iterator]) {
+    this.generator = generator[iterator]();
     return;
   }
 
@@ -48,17 +57,31 @@ function Generator(generator, to, step, boundary) {
         return {done: false, value: generator[index++]};
       }
     };
+    if (iterator)
+      this.generator[iterator] = function () { return self.generator; };
     return;
   }
 
   // generator object that has 'next' function
   if (typeof generator.next === 'function') {
     this.generator = generator;
+    if (iterator && !this.generator[iterator])
+      this.generator[iterator] = function () { return self.generator; };
     return;
   }
 
   throw new TypeError('Unsupported generator: ' +
     typeof generator + ' ' + util.inspect(generator));
+}
+
+if (iterator) {
+  Object.defineProperty(Generator.prototype, iterator, {
+    configurable: true,
+    get: function () {
+      var self = this;
+      return function () { return this.generator; };
+    }
+  });
 }
 
 // next. ネクスト
@@ -86,6 +109,7 @@ Generator.prototype.forEach = function forEach(fn, ctx) {
     fn.call(ctx, n.value);
   return;
 }
+Generator.prototype.each = Generator.prototype.forEach;
 
 // every. 全て真であるかどうか
 Generator.prototype.every = function every(fn, ctx) {
@@ -274,7 +298,7 @@ function range(from, to, step, boundary) {
   var index = 0;
   var length = Math.floor((to - from + (boundary? step: 0))/ step);
 
-  return {
+  var generator = {
     next: function next() {
       if (index >= length)
         return {done: true};
@@ -285,6 +309,9 @@ function range(from, to, step, boundary) {
       return result;
     }
   };
+  if (iterator)
+    generator[iterator] = function () { return generator; };
+  return generator;
 }
 
 exports = module.exports = Generator;

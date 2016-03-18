@@ -1,10 +1,10 @@
 {
   "name": "new-generator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This new Generator is general purpose iterable generator.",
   "main": "new-generator.js",
   "keywords": [
-    "Generator", "Iteration", "Harmony", "ES6"
+    "Generator", "Iteration", "Iterator", "Harmony", "ES6", "ES2015"
   ],
   "author": "LightSpeedC",
   "license": "MIT",
